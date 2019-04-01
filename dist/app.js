@@ -1,6 +1,5 @@
 const Server = require('./database/server');
 const app = Server.app();
-const port = process.env.PORT || 3000;
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -43,7 +42,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Error handlers & middlewares
 app.use((req, res, next) => {
-    res.status(404).send('We this you are lost!');
+    res.status(404).send('We think you are lost!');
 });
 
 app.use((err, req, res, next) => {
@@ -51,4 +50,4 @@ app.use((err, req, res, next) => {
     res.sendFile(path.join(__dirname, '../public/500.html'));
 });
 
-app.listen(port, () => console.info(`Server has listening at ${port}`));
+module.exports = app;

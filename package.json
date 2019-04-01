@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app.js",
-    "start-watch": "nodemon dist/app.js",
+    "start": "node bin/www.js",
+    "start-watch": "nodemon bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
