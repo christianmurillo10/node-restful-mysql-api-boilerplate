@@ -2,7 +2,7 @@ var config;
 
 console.log("Node Environment: ", process.env.NODE_ENV);
 
-if (process.env.NODE_ENV === 'testing') {
+if (process.env.NODE_ENV === 'production') {
     config = {
         mysql: {
             host: 'localhost',
