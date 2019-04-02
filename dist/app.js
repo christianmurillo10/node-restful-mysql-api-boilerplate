@@ -3,6 +3,7 @@ const app = Server.app();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const cors = require('cors');
 
 // Routes path
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
 
 // App Configuration
 require('./config/passport.js');
+app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
