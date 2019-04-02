@@ -4,11 +4,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./database/db');
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-
-const sessionStoreMySQL = new MySQLStore({}, db.get());
 
 // Routes path
 const indexRoute = require('./routes/indexRoute');
@@ -23,13 +18,6 @@ require('./config/passport.js');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  secret: 'keyboard cat',
-  store: sessionStoreMySQL,
-  proxt: true,
-  resave: true,
-  saveUninitialized: true
-}));
 
 // Handler for routes
 app.use('/api', indexRoute);
