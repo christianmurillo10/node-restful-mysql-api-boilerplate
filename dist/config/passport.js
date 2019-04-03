@@ -3,13 +3,13 @@ const LocalStrategy = require('passport-local').Strategy;
 const userModel = require('../models/userModel');
 
 passport.use(new LocalStrategy({
-    usernameField: 'data[username]',
-    passwordField: 'data[password]'
+    usernameField: 'username',
+    passwordField: 'password'
 }, (username, password, done) => {
     userModel.modelGetByUsername(username)
         .then((result) => {
             if (result == false) {
-                return done(null, false, { message: 'Unknown User' });
+                return done(null, false, { message: 'Invalid Credentials' });
             }
 
             userModel.validatePassword(password, result.password, (err, isMatch) => {
@@ -17,9 +17,9 @@ passport.use(new LocalStrategy({
                     console.log(err)
                 } else {
                     if (isMatch) {
-                        return done(null, result);
+                        return done(null, result, { message: 'Successfully Logged In' });
                     } else {
-                        return done(null, false, { message: 'Invalid password' });
+                        return done(null, false, { message: 'Invalid Password' });
                     }
                 }
             });

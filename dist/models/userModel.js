@@ -199,9 +199,15 @@ exports.generateJWT = (data) => {
  * Auth JSON
  */
 exports.toAuthJSON = (data) => {
+    let userData = {
+        email: data.email,
+        username: data.username,
+        position_id: data.position_id
+    }
+
     return {
         _id: data.id,
-        username: data.username,
+        userData: userData,
         token: exports.generateJWT(data)
     };
 }

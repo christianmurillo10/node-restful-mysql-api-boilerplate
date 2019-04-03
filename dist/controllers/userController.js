@@ -17,6 +17,7 @@ exports.create = (req, res, next) => {
                             email: req.body.data.email,
                             username: req.body.data.username,
                             password: Model.hashPassword(req.body.data.password),
+                            position_id: req.body.data.position_id,
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
@@ -133,6 +134,7 @@ exports.register = (req, res, next) => {
                             email: req.body.data.email,
                             username: req.body.data.username,
                             password: Model.hashPassword(req.body.data.password),
+                            position_id: req.body.data.position_id,
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
@@ -140,7 +142,7 @@ exports.register = (req, res, next) => {
                             .then((result) => {
                                 data.id = result.insertId;
 
-                                res.json({ user: Model.toAuthJSON(data) });
+                                res.json({ result: Model.toAuthJSON(data) });
                             }).catch((err) => {
                                 res.json({
                                     status: 0,
@@ -164,15 +166,12 @@ exports.register = (req, res, next) => {
  */
 exports.login = (req, res, next) => {
     try {
-        if (req.body.data === undefined || !req.body.data) {
+        if (req.body === undefined || !req.body) {
             res.json(false);
         } else {
             passport.authenticate('local', { session: false }, (err, user, info) => {
                 if (err || !user) {
-                    return res.status(400).json({
-                        message: info.message,
-                        user   : user
-                    });
+                    return res.json({ message: info.message, result: user });
                 }
                 
                 req.login(user, {session: false}, (err) => {
@@ -180,9 +179,9 @@ exports.login = (req, res, next) => {
                         res.send(err);
                     }
                     
-                    const data = user;  
+                    const data = user;
                     data.token = Model.generateJWT(user);
-                    return res.json({ user: Model.toAuthJSON(data) });
+                    return res.json({ message: info.message, result: Model.toAuthJSON(data) });
                 });
             })(req, res);
         }
@@ -190,3 +189,11 @@ exports.login = (req, res, next) => {
         console.log(err);
     }
 }
+
+exports.loginAuth = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        return res.status(401).json({ message: 'Unauthorized user!' });
+    }
+};
