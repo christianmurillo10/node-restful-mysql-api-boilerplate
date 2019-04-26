@@ -128,7 +128,7 @@ exports.modelGetByName = (value) => {
 }
 
 /**
- * List by Id
+ * Get by Id
  */
 exports.modelGetById = (value) => {
     return new Promise((resolve) => {

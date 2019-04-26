@@ -114,3 +114,25 @@ exports.list = (req, res, next) => {
         console.log(err);
     }
 }
+
+/**
+ * Get by Id
+ */
+exports.findById = (req, res, next) => {
+    try {
+        Model.modelGetById(req.query.id)
+            .then((result) => {
+                res.json({
+                    result: result,
+                });
+            })
+            .catch((err) => {
+                res.json({
+                    status: 0,
+                    message: 'error'
+                });
+            });
+    } catch (err) {
+        console.log(err);
+    }
+}
