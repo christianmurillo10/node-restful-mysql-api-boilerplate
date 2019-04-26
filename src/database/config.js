@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
             username: 'root',
             password: ''
         },
-        api_url: 'http://localhost:5003',
+        api_url: 'http://localhost:3000',
         socket_url: 'http://localhost:3005',
     };
 } else {
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
             username: 'root',
             password: ''
         },
-        api_url: 'http://localhost:5003',
+        api_url: 'http://localhost:3000',
         socket_url: 'http://localhost:3005',
     };
 }

@@ -1,4 +1,4 @@
-const app = require('../dist/app');
+const app = require('../src/app');
 const debug = require('debug')('http');
 const http = require('http');
 
