@@ -86,7 +86,11 @@ exports.modelGetAllData = () => {
     return new Promise((resolve) => {
         let res = {};
         // Get All
-        let query1 = 'SELECT * FROM ' + tableName + ' WHERE is_deleted = 0 ORDER by `id` DESC';
+        let query1 = 'SELECT a.*, b.name AS position_name ';
+        query1 += 'FROM `users` AS a JOIN `positions` AS b ';
+        query1 += 'ON b.id = a.position_id ';
+        query1 += 'WHERE a.is_deleted = 0 ORDER by a.id DESC';
+        
         // Get Count
         let query2 = 'SELECT COUNT(*) as totalCount FROM ' + tableName + ' WHERE is_deleted = 0';
 
