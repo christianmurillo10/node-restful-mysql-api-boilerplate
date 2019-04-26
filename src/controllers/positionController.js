@@ -13,7 +13,7 @@ exports.create = (req, res, next) => {
                 .then((result) => {
                     if (result == false) {
                         let data = {
-                            username: req.body.data.name,
+                            name: req.body.data.name,
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
