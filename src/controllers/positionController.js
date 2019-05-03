@@ -46,27 +46,18 @@ exports.update = (req, res, next) => {
         if (req.body.id === undefined || !req.body.id || !req.body.data || req.body.data === undefined) {
             res.json(false);
         } else {
-            Model.modelGetByName(req.body.data.name)
-                .then((result) => {
-                    if (result == false) {
-                        let data = req.body.data;
-                        data.updated_at = UtilitiesModel.getDateTime(),
+            let data = req.body.data;
+            data.updated_at = UtilitiesModel.getDateTime(),
 
-                        Model.modelUpdate(req.body.id, data)
-                            .then((result) => {
-                                res.json(result);
-                            })
-                            .catch((err) => {
-                                res.json({
-                                    status: 0,
-                                    message: 'error'
-                                });
-                            });
-                    } else {
-                        res.json({
-                            status: 1
-                        });
-                    }
+            Model.modelUpdate(req.body.id, data)
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    res.json({
+                        status: 0,
+                        message: 'error'
+                    });
                 });
         }
     } catch (err) {
