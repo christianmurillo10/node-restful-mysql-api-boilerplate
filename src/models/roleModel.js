@@ -3,7 +3,7 @@ const db = require('../database/db');
 /**
  * This is for dynamic table_name
  */
-const tableName = 'positions';
+const tableName = 'roles';
 
 /**
  * Create
