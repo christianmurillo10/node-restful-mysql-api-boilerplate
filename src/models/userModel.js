@@ -86,9 +86,9 @@ exports.modelGetAllData = () => {
     return new Promise((resolve) => {
         let res = {};
         // Get All
-        let query1 = 'SELECT a.*, b.name AS position_name ';
-        query1 += 'FROM `users` AS a JOIN `positions` AS b ';
-        query1 += 'ON b.id = a.position_id ';
+        let query1 = 'SELECT a.*, b.name AS role_name ';
+        query1 += 'FROM `users` AS a JOIN `roles` AS b ';
+        query1 += 'ON b.id = a.role_id ';
         query1 += 'WHERE a.is_deleted = 0 ORDER by a.id DESC';
         
         // Get Count
@@ -190,7 +190,7 @@ exports.toAuthJSON = (data) => {
     let userData = {
         email: data.email,
         username: data.username,
-        position_id: data.position_id
+        role_id: data.role_id
     }
 
     return {

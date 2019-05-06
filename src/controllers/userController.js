@@ -17,7 +17,7 @@ exports.create = (req, res, next) => {
                             email: req.body.data.email,
                             username: req.body.data.username,
                             password: Model.hashPassword(req.body.data.password),
-                            position_id: req.body.data.position_id,
+                            role_id: req.body.data.role_id,
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
@@ -134,7 +134,7 @@ exports.register = (req, res, next) => {
                             email: req.body.data.email,
                             username: req.body.data.username,
                             password: Model.hashPassword(req.body.data.password),
-                            position_id: req.body.data.position_id,
+                            role_id: req.body.data.role_id,
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
