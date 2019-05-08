@@ -16,7 +16,7 @@ exports.modelCreate = (data) => {
 
         for (let field in data) {
             values.push(data[field]);
-            fields += field + ', ';
+            fields += '`'+ field + '`' + ', ';
             qMarks += '?, ';
         }
 
@@ -44,7 +44,7 @@ exports.modelUpdate = (id, data) => {
 
         for (let field in data) {
             values.push(data[field]);
-            update += field + ' = ?, ';
+            update += '`'+ field + '`' + ' = ?, ';
         }
 
         update = update.trim().substr(0, update.length - 2);

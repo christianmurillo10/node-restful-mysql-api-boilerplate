@@ -15,11 +15,6 @@ exports.create = (req, res, next) => {
                         let data = {
                             name: req.body.data.name,
                             description: req.body.data.description,
-                            code: req.body.data.code,
-                            route: req.body.data.route,
-                            order: req.body.data.order,
-                            parent_id: req.body.data.parent_id,
-                            type: req.body.data.type,
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
