@@ -24,8 +24,6 @@ exports.create = (req, res, next) => {
                             created_at: UtilitiesModel.getDateTime(),
                         }
 
-                        // console.log(data)
-
                         Model.modelCreate(data)
                             .then((result) => {
                                 res.json(result);
